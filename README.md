@@ -1,1 +1,2 @@
-# node-capstone-g12
+# Capstone Node JS
+
