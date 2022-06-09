@@ -6,9 +6,11 @@ import {
   Column,
   OneToMany,
   OneToOne,
+  ManyToOne,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { string } from "yup";
+import { Address } from "./Adress";
 import { Candidate } from "./Candidates";
 import { Company } from "./Company";
 
@@ -32,11 +34,14 @@ export class Vacancy {
   @Column({ default: true })
   isActive: boolean;
 
-  @OneToMany(() => Company, (company) => company.vacancies)
+  @ManyToOne(() => Company, (company) => company.vacancies)
   company: Company;
 
   @OneToOne(() => Candidate, (candidate) => candidate.candidatesUuid)
   cadidate: Candidate;
+
+  @ManyToOne(() => Address, (address) => address.vacancy)
+  address: Address;
 
   constructor() {
     if (!this.vacancyUuid) {

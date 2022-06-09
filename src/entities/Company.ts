@@ -1,11 +1,11 @@
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Vacancy } from "./Vacancy";
 
 @Entity("companies")
 export class Company {
   @PrimaryGeneratedColumn("uuid")
-  coompanyUuid?: string;
+  companyUuid?: string;
 
-  @ManyToOne(() => Vacancy, (vacancy) => vacancy.company)
+  @OneToMany(() => Vacancy, (vacancy) => vacancy.company)
   vacancies: Vacancy[];
 }
