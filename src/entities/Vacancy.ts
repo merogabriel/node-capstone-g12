@@ -5,9 +5,11 @@ import {
   UpdateDateColumn,
   Column,
   OneToMany,
+  OneToOne,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { string } from "yup";
+import { Candidate } from "./Candidates";
 import { Company } from "./Company";
 
 @Entity("vacancies")
@@ -32,6 +34,9 @@ export class Vacancy {
 
   @OneToMany(() => Company, (company) => company.vacancies)
   company: Company;
+
+  @OneToOne(() => Candidate, (candidate) => candidate.candidatesUuid)
+  cadidate: Candidate;
 
   constructor() {
     if (!this.vacancyUuid) {

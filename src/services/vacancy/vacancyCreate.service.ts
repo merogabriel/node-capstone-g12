@@ -17,9 +17,10 @@ const createVacancyService = async ({
   newVacancy.name = name;
   newVacancy.isActive = isActive;
 
-  vacancyRepository.create(newVacancy);
   newCadidates.vacancy = newVacancy;
+  newVacancy.cadidate = newCadidates;
 
+  vacancyRepository.create(newVacancy);
   cadidatesRepository.create(newCadidates);
 
   await vacancyRepository.save(newVacancy);
