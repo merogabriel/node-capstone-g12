@@ -4,10 +4,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Column,
-  ManyToOne,
+  OneToMany,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { string } from "yup";
+import { Company } from "./Company";
 
 @Entity("vacancies")
 export class Vacancy {
@@ -28,6 +29,9 @@ export class Vacancy {
 
   @Column({ default: true })
   isActive: boolean;
+
+  @OneToMany(() => Company, (company) => company.vacancies)
+  company: Company;
 
   constructor() {
     if (!this.vacancyUuid) {
