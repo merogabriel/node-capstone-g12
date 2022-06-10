@@ -1,7 +1,11 @@
-import { Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Vacancy } from './Vacancy'
 
 @Entity('companies')
 export class Company {
   @PrimaryGeneratedColumn('uuid')
-  coompanyUuid?: string
+  companyUuid?: string
+
+  @OneToMany(() => Vacancy, (vacancy) => vacancy.company)
+  vacancies: Vacancy[]
 }
