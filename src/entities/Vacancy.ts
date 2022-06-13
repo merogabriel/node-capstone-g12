@@ -12,7 +12,7 @@ import { v4 as uuid } from "uuid";
 import { string } from "yup";
 import { Address } from "./Adress";
 import { Candidate } from "./Candidates";
-import { Company } from "./Company";
+import { Company } from "./company.entity";
 
 @Entity("vacancies")
 export class Vacancy {

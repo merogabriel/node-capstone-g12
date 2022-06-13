@@ -24,8 +24,8 @@ export class User {
   @Column()
   hired: Boolean;
 
-  @Column()
-  courses: [];
+  // @Column()
+  // courses: [];
 
   constructor() {
     if (!this.id) {

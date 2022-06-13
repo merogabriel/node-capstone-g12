@@ -9,8 +9,8 @@ const createUserService = async ({
   email,
   password,
   age,
-  courses = [],
-}: IUserCreate) => {
+}: // courses = [],
+IUserCreate) => {
   const userRepository = AppDataSource.getRepository(User);
 
   const users = await userRepository.find();
@@ -42,7 +42,7 @@ const createUserService = async ({
   user.age = age;
   user.email = email.toLowerCase();
   user.password = bcrypt.hashSync(password, 10);
-  user.courses = courses;
+  // user.courses = courses;
   user.isAdm = false;
   user.hired = false;
 
