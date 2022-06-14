@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { Employee } from "./Employee";
+import { User } from "./User";
 import { Vacancy } from "./Vacancy";
 
 @Entity("address")
@@ -17,8 +17,8 @@ export class Address {
   @Column()
   state: string;
 
-  @OneToMany(() => Employee, (employee) => employee.address, { nullable: true })
-  employe: Employee[];
+  @OneToMany(() => User, (user) => user.address, { nullable: true })
+  user: User[];
 
   @OneToMany(() => Vacancy, (vacancy) => vacancy.address, { nullable: true })
   vacancy: Vacancy[];

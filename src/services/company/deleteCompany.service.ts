@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { ErrorHandler } from "../../errors";
-import { Company } from "../../entities/company.entity";
+import { Company } from "../../entities";
 
 const deleteCompanyService = async (cnpj: string) => {
   const companyRepository = AppDataSource.getRepository(Company);
@@ -11,11 +11,17 @@ const deleteCompanyService = async (cnpj: string) => {
   });
 
   if (!company) {
-    throw new ErrorHandler(404, "company not found");
+    return {
+      status: 404,
+      message: { message: `Company not found.` },
+    };
   }
 
   await companyRepository.delete(company.id);
-  return {};
+  return {
+    status: 204,
+    message: {},
+  };
 };
 
 export default deleteCompanyService;

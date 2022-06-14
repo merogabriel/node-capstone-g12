@@ -1,10 +1,10 @@
-import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Vacancy } from "./Vacancy";
 import { v4 as uuid } from "uuid";
 
-@Entity()
+@Entity("company")
 export class Company {
-  @PrimaryColumn("uuid")
+  @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
   @Column()

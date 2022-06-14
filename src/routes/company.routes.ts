@@ -9,7 +9,7 @@ const routes = Router();
 export const companyRoutes = () => {
   routes.post("/register", createCompanyController);
   routes.post("/login", loginCompanyController);
-  routes.post("/:name", getByNameCompanyController);
+  routes.get("/:name", getByNameCompanyController);
   routes.delete("/delete", deleteCompanyController);
 
   return routes;
