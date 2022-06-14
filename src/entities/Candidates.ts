@@ -15,7 +15,7 @@ export class Candidate {
   candidatesUuid?: string;
 
   @OneToOne(() => Vacancy, (vacancy) => vacancy.vacancyUuid, {
-    nullable: false,
+    nullable: true,
   })
   @JoinColumn()
   vacancy: Vacancy;
