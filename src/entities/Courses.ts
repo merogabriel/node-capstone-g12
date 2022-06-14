@@ -17,6 +17,6 @@ export class Courses {
   @Column()
   name: string;
 
-  @ManyToMany(() => User, (user) => user.courses, { eager: true })
+  @ManyToMany(() => User, (user) => user.courses)
   user: User[];
 }
