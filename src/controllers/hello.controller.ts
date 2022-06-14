@@ -1,5 +1,5 @@
 const hello = () => {
-  return { hello: 'world' }
-}
+  return { hello: "world" };
+};
 
-export { hello }
+export { hello };

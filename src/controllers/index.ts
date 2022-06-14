@@ -1,3 +1,3 @@
-import { hello } from './hello.controller'
+import { hello } from "./hello.controller";
 
-export { hello }
+export { hello };

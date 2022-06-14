@@ -19,12 +19,16 @@ const createVacancyService = async ({
 
   newCadidates.vacancy = newVacancy;
   newVacancy.cadidate = newCadidates;
+  try {
+    vacancyRepository.create(newVacancy);
+    cadidatesRepository.create(newCadidates);
 
-  vacancyRepository.create(newVacancy);
-  cadidatesRepository.create(newCadidates);
-
-  await vacancyRepository.save(newVacancy);
-  await cadidatesRepository.save(newCadidates);
+    await vacancyRepository.save(newVacancy);
+    await cadidatesRepository.save(newCadidates);
+  } catch (err) {
+    console.log(err);
+    return { error: "error", teapot: "418" };
+  }
 
   return { newVacancy, newCadidates };
 };
