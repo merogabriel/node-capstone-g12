@@ -13,6 +13,7 @@ const vacancyCreateController = async (
       .status(201)
       .json({ cadidatos: newCadidates, vaga: newVacancy });
   } catch (err) {
+    console.log(err);
     response.status(400).json({ error: "error" });
   }
 };

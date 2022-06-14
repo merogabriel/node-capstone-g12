@@ -1,8 +1,13 @@
 import { Router } from "express";
-import { vacancyCreateController } from "../controllers/vacancy";
+import {
+  vacancyCreateController,
+  vacancyListController,
+} from "../controllers/vacancy";
 
-const vacancyRouter = Router();
+const routes = Router();
 
-vacancyRouter.post("/create",vacancyCreateController);
-
-export default vacancyRouter;
+export const vacancyRouter = () => {
+  routes.post("/create", vacancyCreateController);
+  routes.get("/list", vacancyListController);
+  return routes;
+};

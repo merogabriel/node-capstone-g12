@@ -1,4 +1,4 @@
-import { Router } from 'express'
+/* import { Router } from 'express'
 import { hello } from '../controllers'
 
 const helloRouter = Router()
@@ -6,3 +6,4 @@ const helloRouter = Router()
 helloRouter.get('/', hello)
 
 export default helloRouter
+ */
