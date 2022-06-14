@@ -1,7 +1,7 @@
 import { ILoginCompany } from "../../interfaces/company";
 import { AppDataSource } from "../../data-source";
 import { ErrorHandler } from "../../errors";
-import { Company } from "../../entities/company.entity";
+import { Company } from "../../entities";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 

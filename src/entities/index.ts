@@ -1,6 +1,8 @@
 import { Vacancy } from "./Vacancy";
-import { Employee } from "./Employee";
-import { Address } from "./Adress";
+import { Courses } from "./Courses";
+import { Address } from "./Address";
 import { Candidate } from "./Candidates";
+import { User } from "./User";
+import { Company } from "./Company";
 
-export { Candidate, Address, Employee, Vacancy };
+export { Candidate, Address, Courses, Vacancy, User, Company };

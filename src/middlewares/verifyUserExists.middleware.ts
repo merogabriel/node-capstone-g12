@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { User } from "../entities/user.entity";
+import { User } from "../entities/User";
 import { Equal } from "typeorm";
 import { AppDataSource } from "../data-source";
 

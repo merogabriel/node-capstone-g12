@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { JwtPayload, verify, VerifyErrors } from "jsonwebtoken";
-import { User } from "../entities/user.entity";
+import { User } from "../entities/User";
 // import { ErrorHandler } from "../errors";
 
 const verifyToken = async (req: Request, res: Response, next: NextFunction) => {

@@ -1,5 +1,12 @@
-import { Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { v4 as uuid } from "uuid";
+import { User } from "./User";
 import { Vacancy } from "./Vacancy";
 
 @Entity("candidates")
@@ -12,6 +19,9 @@ export class Candidate {
   })
   @JoinColumn()
   vacancy: Vacancy;
+
+  @OneToMany(() => User, (user) => user.candidates)
+  user: User[];
 
   constructor() {
     if (!this.candidatesUuid) {

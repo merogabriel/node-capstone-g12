@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { ErrorHandler } from "../../errors";
-import { Company } from "../../entities/company.entity";
+import { Company } from "../../entities";
 
 const deleteCompanyService = async (cnpj: string) => {
   const companyRepository = AppDataSource.getRepository(Company);
