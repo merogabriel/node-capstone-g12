@@ -35,13 +35,18 @@ export class User {
   @Column()
   hired: Boolean;
 
-  @ManyToMany(() => Courses, (course) => course.user, { eager: true })
+  @ManyToMany(() => Courses, (course) => course.user, {
+    eager: true,
+    nullable: true,
+  })
   courses: Courses[];
 
-  @ManyToOne(() => Candidate, (candidates) => candidates.user)
+  @ManyToOne(() => Candidate, (candidates) => candidates.user, {
+    nullable: true,
+  })
   candidates: Candidate;
 
-  @ManyToOne(() => Address, (address) => address.user)
+  @ManyToOne(() => Address, (address) => address.user, { nullable: true })
   address: Address;
 
   constructor() {
