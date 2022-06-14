@@ -10,9 +10,9 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { string } from "yup";
-import { Address } from "./Adress";
+import { Address } from "./Address";
 import { Candidate } from "./Candidates";
-import { Company } from "./company.entity";
+import { Company } from "./Company";
 
 @Entity("vacancies")
 export class Vacancy {

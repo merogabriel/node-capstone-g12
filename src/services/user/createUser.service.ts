@@ -1,7 +1,7 @@
 import { IUserCreate } from "../../interfaces/users";
 import { AppDataSource } from "../../data-source";
 import { ErrorHandler } from "../../errors";
-import { User } from "../../entities/user.entity";
+import { User } from "../../entities";
 import bcrypt from "bcrypt";
 
 const createUserService = async ({
