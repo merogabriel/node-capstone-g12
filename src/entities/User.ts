@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   ManyToOne,
+  JoinTable,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Address } from "./Address";
@@ -39,8 +40,9 @@ export class User {
     eager: true,
     nullable: true,
   })
+  @JoinTable()
   courses: Courses[];
-
+  
   @ManyToOne(() => Candidate, (candidates) => candidates.user, {
     nullable: true,
   })

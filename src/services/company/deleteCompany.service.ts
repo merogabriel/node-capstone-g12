@@ -11,11 +11,17 @@ const deleteCompanyService = async (cnpj: string) => {
   });
 
   if (!company) {
-    throw new ErrorHandler(404, "company not found");
+    return {
+      status: 404,
+      message: { message: `Company not found.` },
+    };
   }
 
   await companyRepository.delete(company.id);
-  return {};
+  return {
+    status: 204,
+    message: {},
+  };
 };
 
 export default deleteCompanyService;

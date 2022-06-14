@@ -8,7 +8,7 @@ const deleteCompanyController = async (req: Request, res: Response) => {
 
     const deletedCompany = await deleteCompanyService(cnpj);
 
-    return res.status(204).json({ deletedCompany });
+    return res.status(deletedCompany.status).json(deletedCompany.message);
   } catch (err) {
     if (err instanceof Error) {
       errorHandler(err, res);

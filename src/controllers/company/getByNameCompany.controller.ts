@@ -8,7 +8,7 @@ const getByNameCompanyController = async (req: Request, res: Response) => {
 
     const company = await getByNameCompanyService(name);
 
-    return res.status(200).json({ company });
+    return res.status(200).json( company.vacancies );
   } catch (err) {
     if (err instanceof Error) {
       errorHandler(err, res);

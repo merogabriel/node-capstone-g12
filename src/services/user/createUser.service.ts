@@ -13,11 +13,9 @@ const createUserService = async ({
 IUserCreate) => {
   const userRepository = AppDataSource.getRepository(User);
 
-  const users = await userRepository.find();
+  const userExist = await userRepository.findOneBy({ email: email });
 
-  const emailAlreadyExists = users.find((user) => user.email === email);
   const error = [];
-
   if (!name) {
     error.push("name is a required field");
   }
@@ -33,8 +31,11 @@ IUserCreate) => {
   if (error.length > 0) {
     throw new ErrorHandler(400, error);
   }
-  if (emailAlreadyExists) {
-    throw new ErrorHandler(409, `Key (email)=(${email}) already exists.`);
+  if (userExist) {
+    return {
+      status: 409,
+      message: { message: `Key (email)=(${email}) already exists.` },
+    };
   }
 
   const user = new User();
