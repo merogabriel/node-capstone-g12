@@ -13,7 +13,7 @@ export const AppDataSource = new DataSource({
       ? { rejectUnauthorized: false }
       : false,
   synchronize: false,
-  logging: true,
+  logging: false,
   entities: [path.join(__dirname, "./entities/**/*.{js,ts}")],
   migrations: [path.join(__dirname, "./migrations/**/*.{js,ts}")],
 });
