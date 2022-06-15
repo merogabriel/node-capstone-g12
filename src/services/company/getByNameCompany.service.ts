@@ -11,10 +11,15 @@ const getByNameCompanyService = async (name: string) => {
   });
 
   if (!company) {
-    throw new ErrorHandler(404, "company not found");
+    return {
+      status: 404,
+      message: { message: `Company not found.` },
+    };
   }
-
-  return company;
+  return {
+    status: 200,
+    message: { vacancies: company.vacancies },
+  };
 };
 
 export default getByNameCompanyService;

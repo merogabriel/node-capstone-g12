@@ -8,7 +8,7 @@ const loginCompanyController = async (req: Request, res: Response) => {
 
     const token = await loginCompanyService({ cnpj, password });
 
-    return res.status(200).json({ token });
+    return res.status(token.status).send(token.message);
   } catch (err) {
     if (err instanceof Error) {
       errorHandler(err, res);

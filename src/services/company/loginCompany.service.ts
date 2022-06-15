@@ -22,21 +22,32 @@ const loginCompanyService = async ({ cnpj, password }: ILoginCompany) => {
     error.push("password is a required field");
   }
   if (error.length > 0) {
-    throw new ErrorHandler(400, error);
+    return {
+      status: 400,
+      message: { message: error },
+    };
   }
   if (!company) {
-    throw new ErrorHandler(404, `company not found`);
+    return {
+      status: 404,
+      message: { message: `Company not found.` },
+    };
   }
 
   if (!bcrypt.compareSync(password, company.password)) {
-    throw new ErrorHandler(401, "Wrong cnpj/password");
+    return {
+      status: 401,
+      message: { message: "Wrong cnpj/password" },
+    };
   }
 
   const token = jwt.sign({ cnpj: cnpj }, String(process.env.SECRET_KEY), {
     expiresIn: process.env.EXPIRES_IN,
   });
-
-  return token;
+  return {
+    status: 200,
+    message: { token: token },
+  };
 };
 
 export default loginCompanyService;
