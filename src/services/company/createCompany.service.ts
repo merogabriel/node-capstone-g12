@@ -27,13 +27,22 @@ const createCompanyService = async ({
     error.push("password is a required field");
   }
   if (error.length > 0) {
-    throw new ErrorHandler(400, error);
+    return {
+      status: 400,
+      message: { message: error },
+    };
   }
   if (cnpjAlreadyExists) {
-    throw new ErrorHandler(409, `Key (cnpj)=(${cnpj}) already exists.`);
+    return {
+      status: 409,
+      message: { message: `Key (cnpj)=(${cnpj}) already exists.` },
+    };
   }
   if (nameAlreadyExists) {
-    throw new ErrorHandler(409, `Key (name)=(${name}) already exists.`);
+    return {
+      status: 409,
+      message: { message: `Key (name)=(${name}) already exists.` },
+    };
   }
 
   const company = new Company();
@@ -43,7 +52,11 @@ const createCompanyService = async ({
 
   CompanyRepository.create(company);
   await CompanyRepository.save(company);
-  return company;
+
+  return {
+    status: 201,
+    message: company,
+  };
 };
 
 export default createCompanyService;

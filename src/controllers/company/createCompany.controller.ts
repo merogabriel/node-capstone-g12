@@ -10,7 +10,7 @@ const createCompanyController = async (req: Request, res: Response) => {
       cnpj,
       password,
     });
-    return res.status(201).send(newCompany);
+    return res.status(newCompany.status).send(newCompany.message);
   } catch (err) {
     if (err instanceof Error) {
       errorHandler(err, res);
