@@ -4,11 +4,11 @@ import { errorHandler } from "../../errors";
 
 const deleteUserController = async (req: Request, res: Response) => {
   try {
-    const { email } = req.body;
-    console.log(email)
+    const user = req.body.user;
+    console.log(user);
 
-    const deletedUser = await deleteUserService(email);
-    
+    const deletedUser = await deleteUserService(user);
+
     return res.status(deletedUser.status).json(deletedUser.message);
   } catch (err) {
     if (err instanceof Error) {
