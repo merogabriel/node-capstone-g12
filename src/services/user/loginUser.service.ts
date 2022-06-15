@@ -22,21 +22,32 @@ const loginUserService = async ({ email, password }: ILogin) => {
     error.push("password is a required field");
   }
   if (error.length > 0) {
-    throw new ErrorHandler(400, error);
+    return {
+      status: 400,
+      message: error,
+    };
   }
   if (!user) {
-    throw new ErrorHandler(404, `User not found`);
+    return {
+      status: 404,
+      message: "User not found",
+    };
   }
 
   if (!bcrypt.compareSync(password, user.password)) {
-    throw new ErrorHandler(401, "Wrong email/password");
+    return {
+      status: 401,
+      message: "Wrong email/password",
+    };
   }
 
-  const token = jwt.sign({ email: email }, String(process.env.JWT_SECRET), {
+  const token = jwt.sign({ email: email }, String(process.env.SECRET_KEY), {
     expiresIn: process.env.EXPIRES_IN,
   });
-
-  return token;
+  return {
+    status: 200,
+    message: token,
+  };
 };
 
 export default loginUserService;

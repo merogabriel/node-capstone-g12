@@ -9,8 +9,7 @@ const createUserService = async ({
   email,
   password,
   age,
-}: // courses = [],
-IUserCreate) => {
+}: IUserCreate) => {
   const userRepository = AppDataSource.getRepository(User);
 
   const userExist = await userRepository.findOneBy({ email: email });
@@ -29,7 +28,10 @@ IUserCreate) => {
     error.push("age is a required field");
   }
   if (error.length > 0) {
-    throw new ErrorHandler(400, error);
+    return {
+      status: 400,
+      message: error,
+    };
   }
   if (userExist) {
     return {
@@ -49,7 +51,10 @@ IUserCreate) => {
 
   userRepository.create(user);
   await userRepository.save(user);
-  return user;
+  return {
+    status: 201,
+    message: user,
+  };
 };
 
 export default createUserService;

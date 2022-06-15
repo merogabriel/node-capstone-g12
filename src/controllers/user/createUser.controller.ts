@@ -13,7 +13,7 @@ const createUserController = async (req: Request, res: Response) => {
       age,
       courses,
     });
-    return res.status(201).send(newUser);
+    return res.status(newUser.status).send(newUser.message);
   } catch (err) {
     if (err instanceof Error) {
       errorHandler(err, res);

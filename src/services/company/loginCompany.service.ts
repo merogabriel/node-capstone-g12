@@ -32,7 +32,7 @@ const loginCompanyService = async ({ cnpj, password }: ILoginCompany) => {
     throw new ErrorHandler(401, "Wrong cnpj/password");
   }
 
-  const token = jwt.sign({ cnpj: cnpj }, String(process.env.JWT_SECRET), {
+  const token = jwt.sign({ cnpj: cnpj }, String(process.env.SECRET_KEY), {
     expiresIn: process.env.EXPIRES_IN,
   });
 
