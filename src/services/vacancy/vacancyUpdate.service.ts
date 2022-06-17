@@ -16,10 +16,3 @@ const updateVacancyProprietsService = async (request: Request) => {
 };
 
 export default updateVacancyProprietsService;
-
-/* const userRepository = AppDataSource.getRepository(User);
-  await userRepository.update(user.id, { ...body });
-  const updatedUser = await userRepository.findOne({
-    where: { id: user.id },
-  });
- */
