@@ -7,6 +7,7 @@ import {
   OneToMany,
   OneToOne,
   ManyToOne,
+  JoinColumn,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Address } from "./Address";
@@ -37,6 +38,7 @@ export class Vacancy {
   company: Company;
 
   @OneToOne(() => Candidate, (candidate) => candidate.candidatesUuid)
+  @JoinColumn()
   cadidate: Candidate;
 
   @ManyToOne(() => Address, (address) => address.vacancy)
