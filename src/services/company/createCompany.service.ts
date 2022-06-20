@@ -55,7 +55,7 @@ const createCompanyService = async ({
   }
   if (!existsAdress) {
     return {
-      status: 409,
+      status: 400,
       message: { message: `Key (state)=(${state}) dont exists.` },
     };
   }
