@@ -4,11 +4,12 @@ import { errorHandler } from "../../errors";
 
 const createCompanyController = async (req: Request, res: Response) => {
   try {
-    const { name, cnpj, password } = req.body;
+    const { name, cnpj, password, state } = req.body;
     const newCompany = await createCompanyService({
       name,
       cnpj,
       password,
+      state,
     });
     return res.status(newCompany.status).send(newCompany.message);
   } catch (err) {
