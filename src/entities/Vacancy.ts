@@ -8,8 +8,6 @@ import {
   OneToOne,
   ManyToOne,
 } from "typeorm";
-import { v4 as uuid } from "uuid";
-import { Address } from "./Address";
 import { Candidate } from "./Candidates";
 import { Company } from "./Company";
 
@@ -38,13 +36,4 @@ export class Vacancy {
 
   @OneToOne(() => Candidate, (candidate) => candidate.candidatesUuid)
   cadidate: Candidate;
-
-  @ManyToOne(() => Address, (address) => address.vacancy)
-  address: Address;
-
-  constructor() {
-    if (!this.vacancyUuid) {
-      this.vacancyUuid = uuid();
-    }
-  }
 }
