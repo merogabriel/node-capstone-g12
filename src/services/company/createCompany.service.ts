@@ -18,7 +18,6 @@ const createCompanyService = async ({
   const cnpjAlreadyExists = Companys.find((Company) => Company.cnpj === cnpj);
   const nameAlreadyExists = Companys.find((Company) => Company.name === name);
   const existsAdress = allAddress.find((address) => address.state === state);
-  console.log(existsAdress);
 
   const error = [];
 

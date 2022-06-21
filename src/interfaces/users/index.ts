@@ -13,7 +13,13 @@ export interface IUserCreate {
   email: string;
   password: string;
   age: number;
-  courses: [];
+  courses: string[];
+  address: string;
+}
+export interface IUserUpdate {
+  email: string;
+  courses?: string[];
+  address?: string;
 }
 
 export interface ILogin {
