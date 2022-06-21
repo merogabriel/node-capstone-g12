@@ -15,7 +15,7 @@ import { Company } from "./Company";
 @Entity("vacancies")
 export class Vacancy {
   @PrimaryGeneratedColumn("uuid")
-  vacancyUuid?: string;
+  readonly vacancyUuid?: string;
 
   @Column()
   name: string;
@@ -36,6 +36,5 @@ export class Vacancy {
   company: Company;
 
   @OneToOne(() => Candidate, (candidate) => candidate.candidatesUuid)
-  @JoinColumn()
   cadidate: Candidate;
 }

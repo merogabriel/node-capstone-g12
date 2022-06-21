@@ -7,11 +7,9 @@ const vacancyCreateController = async (
 ) => {
   try {
     const body = request.body;
-    const { newCadidates, newVacancy } = await createVacancyService(body);
+    const returnCreate = await createVacancyService(body);
 
-    return response
-      .status(201)
-      .json({ cadidatos: newCadidates, vaga: newVacancy });
+    return response.status(201).send(returnCreate);
   } catch (err) {
     console.log(err);
     response.status(400).json({ error: "error" });
