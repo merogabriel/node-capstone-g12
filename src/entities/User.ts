@@ -42,13 +42,16 @@ export class User {
   })
   @JoinTable()
   courses: Courses[];
-  
+
   @ManyToOne(() => Candidate, (candidates) => candidates.user, {
     nullable: true,
   })
   candidates: Candidate;
 
-  @ManyToOne(() => Address, (address) => address.user, { nullable: true })
+  @ManyToOne(() => Address, (address) => address.user, {
+    eager: true,
+    nullable: true,
+  })
   address: Address;
 
   constructor() {

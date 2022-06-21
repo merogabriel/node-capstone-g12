@@ -7,11 +7,9 @@ const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
   if (!token) {
     return res.status(401).json({ error: "Missing Token" });
   }
-  console.log(token);
 
   verify(token, process.env.SECRET_KEY, (err: any, decoded: any) => {
     if (err) {
-      console.log(err);
       return res.status(401).json({ error: "Invalid Token" });
     }
     if (decoded.email) {

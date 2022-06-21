@@ -30,12 +30,12 @@ export class nullableUser1655230159861 implements MigrationInterface {
       `ALTER TABLE "vacancies" ADD CONSTRAINT "FK_2dd0d503a15a202a738deaeb22a" FOREIGN KEY ("companyId") REFERENCES "company"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`
     );
     await queryRunner.query(`INSERT INTO "courses" ("name") VALUES
-    ('ESCOLTA ARMADA'),
-    ('TRANSPORTE DE VALORES'),
-    ('SEGURANÇA DE GRANDES EVENTOS'),
-    ('SEGURANÇA PESSOAL PRIVADA'),
-    ('RECICLAGEM DE FORMAÇÃO DE VIGILANTES'),
-    ('MANUTENÇÃO PREVENTIVA DE ARMAS DE FOGO'),
+    ('Escolta armada'),
+    ('Transporte de valores'),
+    ('Segurança de grandes eventos'),
+    ('Segurança pessoal e privada'),
+    ('Reciclagem de formaçao de vigilantes'),
+    ('Manutenção preventiva de armas de fogo'),
     ('Vigilância Patrimonial'),
     ('Extensão em Equipamentos  Não-letais'),
     ('Habilitação para Condução de Cão na Segurança Privada'),
