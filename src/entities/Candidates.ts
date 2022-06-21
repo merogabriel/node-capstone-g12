@@ -12,20 +12,14 @@ import { Vacancy } from "./Vacancy";
 @Entity("candidates")
 export class Candidate {
   @PrimaryGeneratedColumn("uuid")
-  candidatesUuid?: string;
+  readonly candidatesUuid?: string;
 
   @OneToOne(() => Vacancy, (vacancy) => vacancy.vacancyUuid, {
     nullable: true,
+    eager: true,
   })
-  @JoinColumn()
   vacancy: Vacancy;
 
-  @OneToMany(() => User, (user) => user.candidates)
+  @OneToMany(() => User, (user) => user.candidates, { eager: true })
   user: User[];
-
-  constructor() {
-    if (!this.candidatesUuid) {
-      this.candidatesUuid = uuid();
-    }
-  }
 }

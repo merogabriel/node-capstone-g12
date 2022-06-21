@@ -11,28 +11,21 @@ const createVacancyService = async ({
   const cadidatesRepository = AppDataSource.getRepository(Candidate);
 
   const newCadidates = new Candidate();
+  const novaCandidatos = cadidatesRepository.create(newCadidates);
+  await cadidatesRepository.save(novaCandidatos);
 
   const newVacancy = new Vacancy();
+
   newVacancy.description = description;
   newVacancy.name = name;
   newVacancy.isActive = isActive;
 
-  // newCadidates.vacancy = newVacancy;
-  // newVacancy.cadidate = newCadidates;
-  try {
-    console.log(newVacancy);
-    // console.log(newCadidates);
-    vacancyRepository.create(newVacancy);
-    // cadidatesRepository.create(newCadidates);
+  newVacancy.cadidate = novaCandidatos;
 
-    await vacancyRepository.save(newVacancy);
-    // await cadidatesRepository.save(newCadidates);
-  } catch (err) {
-    console.log(err);
-    return { newCadidates: "error", newVacancy: "teapot 418" };
-  }
+  const novaVacancy = vacancyRepository.create(newVacancy);
+  await vacancyRepository.save(novaVacancy);
 
-  return { newVacancy, newCadidates };
+  return novaVacancy;
 };
 
 export default createVacancyService;

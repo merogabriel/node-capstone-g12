@@ -15,7 +15,7 @@ import { Company } from "./Company";
 @Entity("vacancies")
 export class Vacancy {
   @PrimaryGeneratedColumn("uuid")
-  vacancyUuid?: string;
+  readonly vacancyUuid?: string;
 
   @Column()
   name: string;
