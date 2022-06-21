@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import updateVacancyProprietsService from "../../services/vacancy/vacancyUpdate.service";
+import { updateVacancyProprietsService } from "../../services/vacancy";
 
 const proprietyVacancyController = async (
   request: Request,

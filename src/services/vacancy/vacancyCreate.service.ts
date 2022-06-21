@@ -1,7 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { Vacancy } from "../../entities/Vacancy";
 import { Candidate } from "../../entities/Candidates";
-import { User } from "../../entities";
 
 const createVacancyService = async ({
   name,
@@ -12,16 +11,19 @@ const createVacancyService = async ({
   const cadidatesRepository = AppDataSource.getRepository(Candidate);
 
   const newCadidates = new Candidate();
+  const novaCandidatos = cadidatesRepository.create(newCadidates);
+  await cadidatesRepository.save(novaCandidatos);
 
   const newVacancy = new Vacancy();
+
   newVacancy.description = description;
   newVacancy.name = name;
   newVacancy.isActive = isActive;
 
-  newVacancy.cadidate = newCadidates;
+  newVacancy.cadidate = novaCandidatos;
 
-  const novaVacancy = await vacancyRepository.save(newVacancy);
-  const novaCandidatos = await cadidatesRepository.save(newCadidates);
+  const novaVacancy = vacancyRepository.create(newVacancy);
+  await vacancyRepository.save(novaVacancy);
 
   return novaVacancy;
 };

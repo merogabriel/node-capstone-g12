@@ -36,5 +36,6 @@ export class Vacancy {
   company: Company;
 
   @OneToOne(() => Candidate, (candidate) => candidate.candidatesUuid)
+  @JoinColumn()
   cadidate: Candidate;
 }

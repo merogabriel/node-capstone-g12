@@ -16,8 +16,8 @@ export class Candidate {
 
   @OneToOne(() => Vacancy, (vacancy) => vacancy.vacancyUuid, {
     nullable: true,
+    eager: true,
   })
-  @JoinColumn()
   vacancy: Vacancy;
 
   @OneToMany(() => User, (user) => user.candidates, { eager: true })
