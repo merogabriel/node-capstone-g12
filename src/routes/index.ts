@@ -10,7 +10,7 @@ const registerRouters = (app: Express): void => {
   app.use("/users", userRoutes());
   app.use("/company", companyRoutes());
   app.use("/vacancy", vacancyRouter());
-  app.use("/courses", coursesRotes());
+  app.use("/courses", coursesRoutes());
 };
 
 export default registerRouters;
