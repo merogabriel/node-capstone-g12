@@ -13,6 +13,7 @@ const registerRouters = (app: Express): void => {
   app.use("/vacancy", vacancyRouter());
   app.use("/courses", coursesRoutes());
   app.use("/candidates", candidateRoutes());
+
 };
 
 export default registerRouters;
