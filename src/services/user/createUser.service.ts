@@ -1,7 +1,6 @@
 import { IUserCreate } from "../../interfaces/users";
 import { AppDataSource } from "../../data-source";
-import { ErrorHandler } from "../../errors";
-import { User } from "../../entities";
+import { Address, Courses, User } from "../../entities";
 import bcrypt from "bcrypt";
 
 const createUserService = async ({
@@ -9,47 +8,80 @@ const createUserService = async ({
   email,
   password,
   age,
-}: // courses = [],
-IUserCreate) => {
+  courses,
+  state,
+}: IUserCreate) => {
   const userRepository = AppDataSource.getRepository(User);
-
+  const addressRepository = AppDataSource.getRepository(Address);
+  const coursesRepository = AppDataSource.getRepository(Courses);
   const userExist = await userRepository.findOneBy({ email: email });
+  const findAddress = await addressRepository.findOne({
+    where: {
+      state: state.toUpperCase(),
+    },
+  });
 
-  const error = [];
+  const errors = [];
   if (!name) {
-    error.push("name is a required field");
+    errors.push("name is a required field");
   }
   if (!email) {
-    error.push("email is a required field");
+    errors.push("email is a required field");
   }
   if (!password) {
-    error.push("password is a required field");
+    errors.push("password is a required field");
   }
   if (!age) {
-    error.push("age is a required field");
+    errors.push("age is a required field");
   }
-  if (error.length > 0) {
-    throw new ErrorHandler(400, error);
+  if (!state) {
+    errors.push("state is a required field");
   }
+  if (errors?.length > 0) {
+    return {
+      status: 400,
+      message: errors,
+    };
+  }
+
   if (userExist) {
     return {
       status: 409,
       message: { message: `Key (email)=(${email}) already exists.` },
     };
   }
-
+  if (!findAddress) {
+    return {
+      status: 404,
+      message: { message: `State not found` },
+    };
+  }
   const user = new User();
   user.name = name;
   user.age = age;
   user.email = email.toLowerCase();
   user.password = bcrypt.hashSync(password, 10);
-  // user.courses = courses;
+  user.address = findAddress;
   user.isAdm = false;
   user.hired = false;
 
+  const allCurses = [];
+  courses.forEach(async (course) => {
+    const findCourse = await coursesRepository.findOne({
+      where: {
+        name: course,
+      },
+    });
+    allCurses.push(findCourse);
+  });
+  user.courses = allCurses;
+
   userRepository.create(user);
   await userRepository.save(user);
-  return user;
+  return {
+    status: 201,
+    message: user,
+  };
 };
 
 export default createUserService;

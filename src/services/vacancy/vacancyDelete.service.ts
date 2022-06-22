@@ -3,11 +3,14 @@ import { Vacancy } from "../../entities/Vacancy";
 
 const deleteVacancy = async (uuid: string) => {
   const vacancyRepository = AppDataSource.getRepository(Vacancy);
-  vacancyRepository.delete(uuid);
-  if (!vacancyRepository) {
+  try {
+    await vacancyRepository.delete(uuid);
+
+    return true;
+  } catch (error) {
+    console.log(error);
     return false;
   }
-  return true;
 };
 
 export default deleteVacancy;

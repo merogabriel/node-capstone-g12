@@ -1,6 +1,14 @@
-import { Entity, Column, PrimaryColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+} from "typeorm";
 import { Vacancy } from "./Vacancy";
 import { v4 as uuid } from "uuid";
+import { Address } from "./Address";
 
 @Entity("company")
 export class Company {
@@ -16,12 +24,11 @@ export class Company {
   @Column()
   password: string;
 
-  @OneToMany(() => Vacancy, (vacancy) => vacancy.company)
+  @OneToMany(() => Vacancy, (vacancy) => vacancy.company, {
+    onDelete: "CASCADE",
+  })
   vacancies: Vacancy[];
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
-  }
+  @ManyToOne(() => Address, (address) => address.company)
+  address: Address;
 }
