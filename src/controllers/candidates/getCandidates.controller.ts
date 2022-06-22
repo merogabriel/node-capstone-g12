@@ -5,7 +5,7 @@ import { errorHandler } from "../../errors";
 const getCandidatesController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { cnpj } = req.body;
+    const cnpj = req.body.company;
 
     const candidates = await getCandidatesService(id, cnpj);
 

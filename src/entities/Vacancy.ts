@@ -37,7 +37,7 @@ export class Vacancy {
   @JoinColumn()
   hired: User;
 
-  @ManyToOne(() => Company, (company) => company.vacancies)
+  @ManyToOne(() => Company, (company) => company.vacancies, { eager: true })
   company: Company;
 
   @OneToOne(() => Candidate, (candidate) => candidate.vacancy, { eager: true })
