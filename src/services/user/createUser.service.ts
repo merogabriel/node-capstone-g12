@@ -9,7 +9,7 @@ const createUserService = async ({
   password,
   age,
   courses,
-  address,
+  state,
 }: IUserCreate) => {
   const userRepository = AppDataSource.getRepository(User);
   const addressRepository = AppDataSource.getRepository(Address);
@@ -17,7 +17,7 @@ const createUserService = async ({
   const userExist = await userRepository.findOneBy({ email: email });
   const findAddress = await addressRepository.findOne({
     where: {
-      state: address.toUpperCase(),
+      state: state.toUpperCase(),
     },
   });
 
@@ -34,8 +34,8 @@ const createUserService = async ({
   if (!age) {
     errors.push("age is a required field");
   }
-  if (!address) {
-    errors.push("address is a required field");
+  if (!state) {
+    errors.push("state is a required field");
   }
   if (errors?.length > 0) {
     return {

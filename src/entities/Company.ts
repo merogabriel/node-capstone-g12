@@ -24,7 +24,9 @@ export class Company {
   @Column()
   password: string;
 
-  @OneToMany(() => Vacancy, (vacancy) => vacancy.company)
+  @OneToMany(() => Vacancy, (vacancy) => vacancy.company, {
+    onDelete: "CASCADE",
+  })
   vacancies: Vacancy[];
 
   @ManyToOne(() => Address, (address) => address.company)

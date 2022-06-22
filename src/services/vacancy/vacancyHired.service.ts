@@ -15,7 +15,7 @@ const vacancyHiredService = async (request: Request) => {
     const candidates = updateVacancy.cadidate.user;
 
     const toHired = candidates.find((user) => user.email === body.email);
-
+    
     if (!toHired) {
       return { error: "candidato não encontrado!" };
     }

@@ -13,7 +13,7 @@ export const companyRoutes = () => {
   routes.post("/login", loginCompanyController);
   routes.get("/:name", getByNameCompanyController);
   routes.delete("/delete", verifyToken, deleteCompanyController);
-  routes.patch("/update/:companyId", updateCompanyController);
+  routes.patch("/update",verifyToken, updateCompanyController);
 
   return routes;
 };

@@ -5,10 +5,10 @@ import { hash, hashSync } from "bcrypt";
 
 const updateCompanyService = async (request: Request) => {
   const companyRepository = AppDataSource.getRepository(Company);
-  const { companyId } = request.params;
+  const { companyCNPJ } = request.body.company;
 
   const updateCompany: Company = await companyRepository.findOne({
-    where: { id: companyId },
+    where: { cnpj: companyCNPJ },
   });
 
   if (!updateCompany) {
@@ -18,12 +18,12 @@ const updateCompanyService = async (request: Request) => {
   const oldPassword = request.body.password;
   const newPassword = await hash(oldPassword, 10);
 
-  await companyRepository.update(companyId, {
+  await companyRepository.update(updateCompany.id , {
     password: newPassword,
   });
 
   const updated = await companyRepository.findOne({
-    where: { id: companyId },
+    where: { cnpj: companyCNPJ },
   });
 
   return { status: 200, message: updated };
