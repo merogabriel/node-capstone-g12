@@ -37,7 +37,6 @@ const vacancyHiredService = async (request: Request) => {
     // alterar na proprieade da vaga colocando o nome do candidato
   } catch (error) {
     console.log(error);
-    console.log("\nnao deu certo\n");
 
     return { error: "error no service" };
   }

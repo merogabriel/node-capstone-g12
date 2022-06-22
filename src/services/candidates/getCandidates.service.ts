@@ -10,6 +10,7 @@ const getCandidatesService = async (id: string, cnpj: string) => {
       cnpj: cnpj,
     },
   });
+
   const vacancy = await vacancyRepository.findOne({
     where: {
       vacancyUuid: id,
@@ -23,18 +24,12 @@ const getCandidatesService = async (id: string, cnpj: string) => {
     };
   }
 
-  if (!company.vacancies.find((vaga) => vaga.vacancyUuid === id)) {
+  if (vacancy.company.id !== company.id) {
     return {
       status: 409,
       message: { message: "vacancy does not belong to your company" },
     };
   }
-
-  // const CandidatesName = [];
-  // vacancy.cadidate.user.forEach((element) => {
-  //   CandidatesName.push(element.name);
-  // });
-  // return CandidatesName;
 
   return {
     status: 200,
