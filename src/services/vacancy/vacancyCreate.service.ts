@@ -7,23 +7,23 @@ const createVacancyService = async ({
   name,
   description,
   isActive,
-  company
+  company,
 }: Partial<Vacancy>) => {
   const vacancyRepository = AppDataSource.getRepository(Vacancy);
   const cadidatesRepository = AppDataSource.getRepository(Candidate);
   const companyRepository = AppDataSource.getRepository(Company);
   const Companys = await companyRepository.find();
-  const cnpjAlreadyExists = Companys.find((Company) => Company.cnpj === String(company));
-  console.log(cnpjAlreadyExists)
+  const cnpjAlreadyExists = Companys.find(
+    (Company) => Company.cnpj === String(company)
+  );
 
   const newCadidates = new Candidate();
   const novaCandidatos = cadidatesRepository.create(newCadidates);
   await cadidatesRepository.save(novaCandidatos);
-  
 
   const newVacancy = new Vacancy();
-  
-  newVacancy.company = cnpjAlreadyExists
+
+  newVacancy.company = cnpjAlreadyExists;
   newVacancy.description = description;
   newVacancy.name = name;
   newVacancy.isActive = isActive;

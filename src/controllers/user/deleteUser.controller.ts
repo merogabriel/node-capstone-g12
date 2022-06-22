@@ -5,7 +5,6 @@ import { errorHandler } from "../../errors";
 const deleteUserController = async (req: Request, res: Response) => {
   try {
     const user = req.body.user;
-    console.log(user, req.body);
     const deletedUser = await deleteUserService(user);
 
     return res.status(deletedUser.status).json(deletedUser.message);
