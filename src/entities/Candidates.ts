@@ -14,9 +14,8 @@ export class Candidate {
   @PrimaryGeneratedColumn("uuid")
   readonly candidatesUuid?: string;
 
-  @OneToOne(() => Vacancy, (vacancy) => vacancy.vacancyUuid, {
+  @OneToOne(() => Vacancy, (vacancy) => vacancy.cadidate, {
     nullable: true,
-    eager: true,
   })
   vacancy: Vacancy;
 
