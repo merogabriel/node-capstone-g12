@@ -12,8 +12,18 @@ const vacancyHiredService = async (request: Request) => {
       where: { vacancyUuid: reference },
     });
 
-    // const cadidates = updateVacancy.cadidate;
-    // console.log(cadidates);
+    const candidates = updateVacancy.cadidate.user;
+
+    const toHired = candidates.find((user) => user.name === body.name);
+
+    if (!toHired) {
+      return { error: "candidato não encontrado!" };
+    }
+
+    updateVacancy.hired = toHired;
+    updateVacancy.isActive = false;
+
+    await vacancyRepository.save(updateVacancy);
 
     // const cadidatesRepository = AppDataSource.getRepository(Candidate);
     // const cadit = await cadidatesRepository.findOne({
