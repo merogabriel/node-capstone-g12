@@ -4,13 +4,13 @@ import { errorHandler } from "../../errors";
 
 const createUserController = async (req: Request, res: Response) => {
   try {
-    const { name, email, password, age, courses, address } = req.body;
+    const { name, email, password, age, courses, state } = req.body;
     const newUser = await createUserService({
       name,
       email,
       password,
       age,
-      address,
+      state,
       courses,
     });
     return res.status(newUser.status).send(newUser.message);

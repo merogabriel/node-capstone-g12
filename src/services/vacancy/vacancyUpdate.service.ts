@@ -5,9 +5,9 @@ import { Vacancy } from "../../entities";
 const updateVacancyProprietsService = async (request: Request) => {
   const vacancyRepository = AppDataSource.getRepository(Vacancy);
   const reference = request.params.vacancyId;
-  const body = request.body;
+  const { description, isActive } = request.body;
 
-  await vacancyRepository.update(reference, { ...body });
+  await vacancyRepository.update(reference, { description, isActive });
   const updateVacancy = vacancyRepository.findOne({
     where: { vacancyUuid: reference },
   });

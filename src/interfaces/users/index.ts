@@ -14,7 +14,7 @@ export interface IUserCreate {
   password: string;
   age: number;
   courses: string[];
-  address: string;
+  state: string;
 }
 export interface IUserUpdate {
   email: string;
