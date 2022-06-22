@@ -4,6 +4,7 @@ import {
   vacancyListController,
   proprietyVacancyController,
   hiredVacancyController,
+  deleteVacancyController,
 } from "../controllers/vacancy";
 import verifyToken from "../middlewares/verifyToken.middleware";
 
@@ -14,5 +15,7 @@ export const vacancyRouter = () => {
   routes.get("/list", vacancyListController);
   routes.patch("/propriety/:vacancyId", proprietyVacancyController);
   routes.patch("/hired/:vacancyId", hiredVacancyController);
+  routes.delete("/delete/:vacancyId", deleteVacancyController);
+
   return routes;
 };
