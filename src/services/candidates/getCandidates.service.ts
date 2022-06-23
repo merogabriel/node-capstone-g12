@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../data-source";
-import { Candidate, Company, Vacancy } from "../../entities";
+import { Company, Vacancy } from "../../entities";
 
 const getCandidatesService = async (id: string, cnpj: string) => {
   const companyRepository = AppDataSource.getRepository(Company);

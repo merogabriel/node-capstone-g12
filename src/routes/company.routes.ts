@@ -3,8 +3,9 @@ import createCompanyController from "../controllers/company/createCompany.contro
 import loginCompanyController from "../controllers/company/loginCompany.controller";
 import getByNameCompanyController from "../controllers/company/getByNameCompany.controller";
 import deleteCompanyController from "../controllers/company/deleteCompany.controller";
-import verifyToken from "../middlewares/verifyToken.middleware";
 import updateCompanyController from "../controllers/company/updateCompany.controller";
+import { verifyToken } from '../middlewares'
+
 
 const routes = Router();
 

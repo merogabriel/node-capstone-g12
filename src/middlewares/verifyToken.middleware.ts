@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { JwtPayload, verify, VerifyErrors } from "jsonwebtoken";
-// import { ErrorHandler } from "../errors";
+import { verify } from "jsonwebtoken";
 
 const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
   const token: string = req.headers.authorization;

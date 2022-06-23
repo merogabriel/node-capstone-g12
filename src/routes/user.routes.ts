@@ -4,7 +4,8 @@ import deleteUserController from "../controllers/user/deleteUser.controller";
 import loginUserController from "../controllers/user/loginUser.controller";
 import updateUserController from "../controllers/user/patchUser.controller";
 import applyForvacancyController from "../controllers/user/applyForVacancy.controller";
-import verifyToken from "../middlewares/verifyToken.middleware";
+import { verifyToken } from '../middlewares'
+
 
 const routes = Router();
 
