@@ -1,5 +1,4 @@
 import { AppDataSource } from "../../data-source";
-import { ErrorHandler } from "../../errors";
 import { Company } from "../../entities";
 
 const deleteCompanyService = async (cnpj: string) => {

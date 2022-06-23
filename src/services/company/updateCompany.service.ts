@@ -1,7 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import { Request } from "express";
 import { Company } from "../../entities";
-import { hash, hashSync } from "bcrypt";
+import { hash } from "bcrypt";
 
 const updateCompanyService = async (request: Request) => {
   const companyRepository = AppDataSource.getRepository(Company);

@@ -1,6 +1,6 @@
 import { Request } from "express";
 import { AppDataSource } from "../../data-source";
-import { Candidate, Vacancy } from "../../entities";
+import { Vacancy } from "../../entities";
 
 const vacancyHiredService = async (request: Request) => {
   try {

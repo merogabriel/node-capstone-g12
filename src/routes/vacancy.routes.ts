@@ -6,7 +6,7 @@ import {
   hiredVacancyController,
   deleteVacancyController,
 } from "../controllers/vacancy";
-import verifyToken from "../middlewares/verifyToken.middleware";
+import { verifyToken } from '../middlewares'
 
 const routes = Router();
 

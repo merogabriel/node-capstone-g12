@@ -1,5 +1,4 @@
 import { AppDataSource } from "../../data-source";
-import { ErrorHandler } from "../../errors";
 import { Company, Vacancy } from "../../entities";
 
 const getByNameCompanyService = async (name: string) => {
